@@ -19,7 +19,7 @@ class Exp(MyExp):
         # --------------------------------------------------
 
         # Dataset Path (Default datasets/COCO)
-        self.data_dir = "../datasets/dominos"
+        self.data_dir = "/opt/ml/input/data/train"
 
         # Annotation File (Under Annotations/)
         self.train_ann = "train_ann.json"
