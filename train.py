@@ -6,6 +6,7 @@ import argparse
 import random
 import warnings
 from loguru import logger
+import os
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -32,7 +33,7 @@ def make_parser():
     )
     parser.add_argument("-b", "--batch-size", type=int, default=64, help="batch size")
     parser.add_argument(
-        "-d", "--devices", default=None, type=int, help="device for training"
+        "-d", "--devices", default=os.environ['SM_NUM_GPUS'], type=int, help="device for training"
     )
     parser.add_argument(
         "-f",
@@ -94,6 +95,12 @@ def make_parser():
         default=None,
         nargs=argparse.REMAINDER,
     )
+    parser.add_argument(
+        "--max-epoch", default=300, type=int, help="number of epochs"
+    )
+    parser.add_argument(
+        "--output-dir", default=os.environ['SM_MODEL_DIR'], type=str, help="output dir of model"
+    )
     return parser
 
 
@@ -113,6 +120,9 @@ def main(exp: Exp, args):
     configure_nccl()
     configure_omp()
     cudnn.benchmark = True
+
+    exp.max_epoch = args.max_epoch
+    exp.output_dir = args.output_dir
 
     trainer = exp.get_trainer(args)
     trainer.train()
