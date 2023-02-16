@@ -98,9 +98,6 @@ def make_parser():
     parser.add_argument(
         "--max-epoch", default=300, type=int, help="number of epochs"
     )
-    parser.add_argument(
-        "--output-dir", default=os.environ['SM_MODEL_DIR'], type=str, help="output dir of model"
-    )
     return parser
 
 
@@ -122,7 +119,6 @@ def main(exp: Exp, args):
     cudnn.benchmark = True
 
     exp.max_epoch = args.max_epoch
-    exp.output_dir = args.output_dir
 
     trainer = exp.get_trainer(args)
     trainer.train()
