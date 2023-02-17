@@ -14,14 +14,14 @@ class Exp(MyExp):
         self.depth = 0.33
         self.width = 0.50
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
-        self.num_classes = 71
+        self.num_classes = 12
 
         # --------------------------------------------------
 
         # Dataset Path (Default datasets/COCO)
         self.data_dir = "/opt/ml/input/data/train"
 
-        # Annotation File (Under Annotations/)
+        # Annotation File (Under annotations/)
         self.train_ann = "train_ann.json"
         self.val_ann = "val_ann.json"
         self.test_ann = "test_ann.json"
