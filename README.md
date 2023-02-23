@@ -1,3 +1,9 @@
+## Custom SM Train
+- Create exp file
+- New args
+  --max-epoch, default=300
+  --output-dir, default=os.environ['SM_MODEL_DIR']
+
 <div align="center"><img src="assets/logo.png" width="350"></div>
 <img src="assets/demo.png" >
 
