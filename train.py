@@ -95,11 +95,15 @@ def make_parser():
         default=None,
         nargs=argparse.REMAINDER,
     )
+    
     parser.add_argument(
         "--max-epoch", default=300, type=int, help="number of epochs"
     )
     parser.add_argument(
         "--output-dir", default=os.environ['SM_MODEL_DIR'], type=str, help="output dir of model"
+    )
+    parser.add_argument(
+        "--num-classes", default=os.environ['SM_MODEL_DIR'], type=str, help="number of classes"
     )
     return parser
 
@@ -123,6 +127,7 @@ def main(exp: Exp, args):
 
     exp.max_epoch = args.max_epoch
     exp.output_dir = args.output_dir
+    exp.num_classes = args.num_classes
 
     trainer = exp.get_trainer(args)
     trainer.train()
