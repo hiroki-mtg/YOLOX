@@ -103,7 +103,7 @@ def make_parser():
         "--output-dir", default=os.environ['SM_MODEL_DIR'], type=str, help="output dir of model"
     )
     parser.add_argument(
-        "--num-classes", default=os.environ['SM_MODEL_DIR'], type=str, help="number of classes"
+        "--num-classes", default=os.environ['SM_MODEL_DIR'], type=int, help="number of classes"
     )
     return parser
 
