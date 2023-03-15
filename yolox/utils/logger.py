@@ -162,6 +162,7 @@ class WandbLogger(object):
         """
         try:
             import wandb
+            wandb.login()
             self.wandb = wandb
         except ModuleNotFoundError:
             raise ModuleNotFoundError(
@@ -432,5 +433,6 @@ class WandbLogger(object):
                     wandb_params.update({k[len(prefix):]: int(v)})
                 except ValueError:
                     wandb_params.update({k[len(prefix):]: v})
+        
 
         return cls(config=vars(exp), val_dataset=val_dataset, **wandb_params)
